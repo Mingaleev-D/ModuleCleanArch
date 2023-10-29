@@ -1,0 +1,106 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.example.modulecleanarch'
+    compileSdk 34
+
+    compileSdkPreview = "UpsideDownCake"
+
+    defaultConfig {
+        applicationId "com.example.modulecleanarch"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField("String", "API_KEY", MY_API)
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig = true
+    }
+}
+
+dependencies {
+
+    implementation project(":module:module_ui")
+    implementation project(":search:search_ui")
+    implementation project(":common:common_utils")
+    implementation project(":module:module_domain")
+    implementation project(":module:module_data")
+
+    implementation project(":search:search_domain")
+    implementation project(":search:search_data")
+
+    implementation Deps.core
+    implementation Deps.appCompat
+    implementation Deps.androidMaterial
+    implementation Deps.constraintLayout
+    testImplementation TestImplementation.junit
+    androidTestImplementation AndroidTestImplementation.junit
+    androidTestImplementation AndroidTestImplementation.espresso
+
+    implementation Lifecycle.lifecycleViewModel
+    implementation Lifecycle.lifecycleRuntime
+    implementation Lifecycle.lifecycleLivedata
+    implementation Lifecycle.lifecycleCompiler
+    implementation Lifecycle.lifecycleSavedstate
+
+    implementation Coroutines.coroutineCore
+    implementation Coroutines.coroutineAndroid
+
+    implementation NavigationComponents.navigationFragment
+    implementation NavigationComponents.navigationUi
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConvertor
+    implementation Retrofit.okHttp
+
+    implementation OkHTTP.okHTTPInterceptor
+    implementation OkHTTP.okHTTP3
+
+    implementation DaggerHilt.hilt
+    kapt DaggerHilt.hiltCompiler
+
+    implementation ViewModelDelegate.viewModelDelegateActivity
+    implementation ViewModelDelegate.viewModelDelegateFragment
+
+    implementation Glide.glide
+    kapt Glide.annotationProcessor
+
+    implementation Room.roomKtx
+    implementation Room.roomRuntime
+    kapt Room.roomCompiler
+
+    implementation IntuitSdpSsp.sdp
+    implementation IntuitSdpSsp.ssp
+
+    implementation CircularProgressBar.swipeRefresh
+
+    implementation LottieAnimations.lottieAnimations
+
+    implementation SplashScreenAndroid.splashScreenAndroid
+}

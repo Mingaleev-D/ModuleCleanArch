@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.example.module_data'
+    compileSdk 34
+
+    compileSdkPreview = "UpsideDownCake"
+
+    defaultConfig {
+        minSdk 24
+
+        buildConfigField("String", "API_KEY", MY_API)
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig = true
+    }
+}
+
+dependencies {
+
+    implementation project(":common:common_utils")
+    implementation project(":module:module_domain")
+
+    implementation Deps.core
+    implementation Deps.appCompat
+    implementation Deps.androidMaterial
+    implementation Deps.constraintLayout
+    testImplementation TestImplementation.junit
+    androidTestImplementation AndroidTestImplementation.junit
+    androidTestImplementation AndroidTestImplementation.espresso
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConvertor
+    implementation Retrofit.okHttp
+
+    implementation OkHTTP.okHTTPInterceptor
+    implementation OkHTTP.okHTTP3
+
+    implementation DaggerHilt.hilt
+    kapt DaggerHilt.hiltCompiler
+
+    implementation Room.roomKtx
+    implementation Room.roomRuntime
+    kapt Room.roomCompiler
+}

@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "ModuleCleanArch"
+include ':app'
+include ':module:module_data'
+include ':module:module_domain'
+include ':module:module_ui'
+include ':search:search_data'
+include ':search:search_domain'
+include ':search:search_ui'
+include ':common:common_utils'
